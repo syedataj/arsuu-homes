@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARSUU Group | Real Estate & Education Consultancy — Bengaluru</title>
+  <meta name="description" content="ARSUU Group Bengaluru — Explore RERA-approved residential plots, apartments, and villas, or get expert MBA & Engineering admissions guidance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bronze: #8a582b;
+      --bronze-light: #d4a373;
+      --bronze-dark: #6d431e;
+      --cream: #fbf8f3;
+      --text-dark: #231f1d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      min-height: 100vh;
+      width: 100%;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #14110f;
+      color: #ffffff;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Full-Width Editorial Top Brand Header (Matches Mobile View on Laptop) */
+    .top-brand {
+      width: 100%;
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--cream);
+      padding: 16px 24px 14px;
+      border-bottom: 1px solid rgba(138, 88, 43, 0.25);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+      animation: fadeDown 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .top-brand img {
+      height: 44px;
+      width: auto;
+      max-width: 185px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .brand-location {
+      margin-top: 5px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--bronze);
+    }
+
+    /* 50/50 Split Container Filling Remaining Height */
+    .split-wrapper {
+      display: flex;
+      flex: 1;
+      width: 100%;
+      position: relative;
+    }
+
+    /* Vertical Center Divider Line on Desktop */
+    .split-wrapper::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(212, 163, 115, 0.55), transparent);
+      z-index: 15;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .split-wrapper:hover::after {
+      opacity: 0.2;
+    }
+
+    /* Individual Half Panel */
+    .split-panel {
+      position: relative;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #ffffff;
+      overflow: hidden;
+      padding: 64px 44px;
+      transition: flex 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+    }
+
+    @media (min-width: 860px) {
+      .split-panel:hover {
+        flex: 1.36;
+      }
+    }
+
+    /* Background Image Layer with Smooth Zoom */
+    .panel-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.01);
+      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 1;
+    }
+
+    .split-panel:hover .panel-bg {
+      transform: scale(1.07);
+    }
+
+    /* Real Estate Background */
+    .panel-realestate .panel-bg {
+      background-image: url('https://i.pinimg.com/736x/75/56/38/75563896a0d56cf96aa2b60d3502f3df.jpg');
+    }
+
+    /* Education Background */
+    .panel-education .panel-bg {
+      background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1600&q=80');
+    }
+
+    /* Refined Gradient Overlays */
+    .panel-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      transition: background 0.5s ease;
+    }
+
+    .panel-realestate .panel-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(18, 14, 11, 0.52) 0%,
+        rgba(30, 21, 14, 0.72) 55%,
+        rgba(14, 10, 8, 0.9) 100%
+      );
+    }
+
+    .panel-education .panel-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(15, 19, 25, 0.52) 0%,
+        rgba(22, 27, 34, 0.74) 55%,
+        rgba(12, 15, 20, 0.9) 100%
+      );
+    }
+
+    .split-panel:hover .panel-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(24, 17, 12, 0.4) 0%,
+        rgba(52, 34, 18, 0.68) 55%,
+        rgba(16, 12, 9, 0.88) 100%
+      );
+    }
+
+    /* Panel Content */
+    .panel-content {
+      position: relative;
+      z-index: 10;
+      max-width: 440px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .division-pill {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f3d5b5;
+      background: rgba(138, 88, 43, 0.35);
+      border: 1px solid rgba(243, 213, 181, 0.35);
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+    }
+
+    .panel-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.15rem, 3.8vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.12;
+      margin-bottom: 14px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+      opacity: 0;
+      animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.28s forwards;
+    }
+
+    .panel-content p {
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 30px;
+      opacity: 0;
+      animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+    }
+
+    /* Animated CTA Button */
+    .cta-btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: var(--bronze);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.94rem;
+      letter-spacing: 0.03em;
+      padding: 14px 30px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.52s forwards;
+    }
+
+    .cta-btn .arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .split-panel:hover .cta-btn {
+      background-color: var(--bronze-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(138, 88, 43, 0.5);
+    }
+
+    .split-panel:hover .cta-btn .arrow {
+      transform: translateX(5px);
+    }
+
+    .cta-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.65s ease;
+    }
+
+    .split-panel:hover .cta-btn::before {
+      left: 140%;
+    }
+
+    /* Full-Width Editorial Footer Bar */
+    .bottom-bar {
+      width: 100%;
+      z-index: 30;
+      text-align: center;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.85);
+      background-color: #14110f;
+      border-top: 1px solid rgba(212, 163, 115, 0.25);
+      padding: 14px 20px;
+    }
+
+    .bottom-bar a {
+      color: #f3d5b5;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 6px;
+    }
+
+    .bottom-bar a:hover {
+      text-decoration: underline;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile Responsive Stack */
+    @media (max-width: 859px) {
+      .top-brand {
+        padding: 14px 20px 12px;
+      }
+
+      .top-brand img {
+        height: 40px;
+      }
+
+      .split-wrapper {
+        flex-direction: column;
+      }
+
+      .split-wrapper::after {
+        display: none;
+      }
+
+      .split-panel {
+        min-height: 46vh;
+        padding: 52px 24px;
+      }
+
+      .panel-education {
+        border-top: 1px solid rgba(212, 163, 115, 0.35);
+      }
+
+      .bottom-bar {
+        font-size: 0.78rem;
+        padding: 14px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Clean Full-Width Editorial Header -->
+  <header class="top-brand">
+    <img src="logo.png" alt="ARSUU Group" onerror="this.style.display='none'" />
+    <span class="brand-location">Bengaluru</span>
+  </header>
+
+  <!-- 50/50 Split Screen -->
+  <main class="split-wrapper">
+
+    <!-- Left / Top Half: Real Estate -->
+    <a href="https://realestate.arsuugroup.com" class="split-panel panel-realestate">
+      <div class="panel-bg"></div>
+      <div class="panel-overlay"></div>
+      <div class="panel-content">
+        <span class="division-pill">Real Estate Division</span>
+        <h2>ARSUU Real Estate</h2>
+        <p>
+          RERA-approved residential plots, ready-to-move apartments, and luxury villas in all over Bangalore.
+        </p>
+        <span class="cta-btn">
+          Explore Properties <span class="arrow">&rarr;</span>
+        </span>
+      </div>
+    </a>
+
+    <!-- Right / Bottom Half: Education -->
+    <a href="https://education.arsuugroup.com" class="split-panel panel-education">
+      <div class="panel-bg"></div>
+      <div class="panel-overlay"></div>
+      <div class="panel-content">
+        <span class="division-pill">Education Division</span>
+        <h2>ARSUU Education</h2>
+        <p>
+          Expert career counseling and direct admissions assistance for top MBA, PGDM &amp; Engineering colleges across Bengaluru and India.
+        </p>
+        <span class="cta-btn">
+          Explore Admissions <span class="arrow">&rarr;</span>
+        </span>
+      </div>
+    </a>
+
+  </main>
+
+  <!-- Full-Width Footer -->
+  <footer class="bottom-bar">
+    &copy; 2026 ARSUU Group &bull;
+    <a href="https://wa.me/919110440698" target="_blank" rel="noopener">WhatsApp: +91 91104 40698</a>
+  </footer>
+
+</body>
+</html>
